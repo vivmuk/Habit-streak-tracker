@@ -161,32 +161,32 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
     elevation: 8,
     overflow: "hidden",
-    marginBottom: 16,
+    marginBottom: 12,
   },
   completedCard: {
     shadowColor: "#10B981",
     shadowOpacity: 0.2,
   },
   cardGradient: {
-    padding: 16,
-    minHeight: 160,
+    padding: 12,
+    minHeight: 140,
     justifyContent: "space-between",
   },
   cardHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 12,
+    marginBottom: 8,
   },
   iconContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
     justifyContent: "center",
     alignItems: "center",
   },
   icon: {
-    fontSize: 20,
+    fontSize: 18,
   },
   checkContainer: {
     width: 24,
@@ -212,11 +212,11 @@ const styles = StyleSheet.create({
     borderColor: "#D1D5DB",
   },
   habitName: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: "bold",
     color: "#1F2937",
-    marginBottom: 8,
-    lineHeight: 20,
+    marginBottom: 6,
+    lineHeight: 18,
   },
   completedText: {
     color: "white",
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
   streakContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 8,
+    marginBottom: 6,
   },
   fireEmoji: {
     fontSize: 16,

@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8FAFC",
   },
   headerGradient: {
-    paddingBottom: 30,
+    paddingBottom: 20,
   },
   header: {
     paddingHorizontal: 20,
@@ -149,15 +149,15 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   title: {
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: "bold",
     color: "white",
-    marginBottom: 20,
+    marginBottom: 16,
   },
   progressContainer: {
     backgroundColor: "rgba(255, 255, 255, 0.15)",
     borderRadius: 16,
-    padding: 20,
+    padding: 16,
     alignItems: "center",
   },
   progressStats: {
@@ -198,14 +198,14 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingHorizontal: 20,
-    paddingTop: 20,
+    paddingTop: 16,
     paddingBottom: 100,
   },
   habitsGrid: {
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    gap: 16,
+    gap: 12,
   },
   celebrationCard: {
     padding: 20,
