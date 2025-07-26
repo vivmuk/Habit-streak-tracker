@@ -2,7 +2,7 @@ import { ConvexProvider, ConvexReactClient } from "convex/react";
 import { Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
-const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL || "https://cool-donkey-445.convex.cloud", {
+const convex = new ConvexReactClient(process.env.EXPO_PUBLIC_CONVEX_URL || "https://cool-bulldog-876.convex.cloud", {
   unsavedChangesWarning: false,
 });
 

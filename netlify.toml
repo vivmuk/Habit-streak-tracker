@@ -4,7 +4,7 @@
 
 [build.environment]
   NODE_VERSION = "18"
-  EXPO_PUBLIC_CONVEX_URL = "https://cool-donkey-445.convex.cloud"
+  EXPO_PUBLIC_CONVEX_URL = "https://cool-bulldog-876.convex.cloud"
 
 [[headers]]
   for = "/*"
