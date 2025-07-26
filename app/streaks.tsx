@@ -13,6 +13,7 @@ import { api } from "@/convex/_generated/api";
 import { LinearGradient } from "expo-linear-gradient";
 import { Ionicons } from "@expo/vector-icons";
 import HabitCalendar from "@/components/HabitCalendar";
+import CombinedHabitCalendar from "@/components/CombinedHabitCalendar";
 import LoadingScreen from "@/components/LoadingScreen";
 
 const { width } = Dimensions.get("window");
@@ -29,6 +30,7 @@ function getLocalDateString(): string {
 export default function Streaks() {
   const habits = useQuery(api.habits.getAllHabits);
   const [selectedMonth, setSelectedMonth] = useState(new Date());
+  const [viewMode, setViewMode] = useState<'individual' | 'combined'>('combined');
   const todayDate = getLocalDateString();
 
   if (habits === undefined) {
@@ -79,6 +81,49 @@ export default function Streaks() {
               <Ionicons name="chevron-forward" size={24} color="white" />
             </TouchableOpacity>
           </View>
+
+          {/* View Mode Toggle */}
+          <View style={styles.viewToggle}>
+            <TouchableOpacity 
+              style={[
+                styles.toggleButton,
+                viewMode === 'combined' && styles.activeToggleButton
+              ]}
+              onPress={() => setViewMode('combined')}
+            >
+              <Ionicons 
+                name="grid" 
+                size={16} 
+                color={viewMode === 'combined' ? 'white' : 'rgba(255,255,255,0.7)'} 
+              />
+              <Text style={[
+                styles.toggleText,
+                viewMode === 'combined' && styles.activeToggleText
+              ]}>
+                Combined
+              </Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity 
+              style={[
+                styles.toggleButton,
+                viewMode === 'individual' && styles.activeToggleButton
+              ]}
+              onPress={() => setViewMode('individual')}
+            >
+              <Ionicons 
+                name="list" 
+                size={16} 
+                color={viewMode === 'individual' ? 'white' : 'rgba(255,255,255,0.7)'} 
+              />
+              <Text style={[
+                styles.toggleText,
+                viewMode === 'individual' && styles.activeToggleText
+              ]}>
+                Individual
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </LinearGradient>
 
@@ -87,25 +132,32 @@ export default function Streaks() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollContent}
       >
-        {habits?.map((habit) => (
-          <View key={habit._id} style={styles.habitSection}>
-            <View style={styles.habitHeader}>
-              <View style={[styles.habitIcon, { backgroundColor: habit.color }]}>
-                <Text style={styles.iconText}>{habit.icon}</Text>
+        {viewMode === 'combined' ? (
+          <CombinedHabitCalendar 
+            selectedMonth={selectedMonth}
+            habits={habits || []}
+          />
+        ) : (
+          habits?.map((habit) => (
+            <View key={habit._id} style={styles.habitSection}>
+              <View style={styles.habitHeader}>
+                <View style={[styles.habitIcon, { backgroundColor: habit.color }]}>
+                  <Text style={styles.iconText}>{habit.icon}</Text>
+                </View>
+                <View style={styles.habitInfo}>
+                  <Text style={styles.habitName}>{habit.name}</Text>
+                  <HabitStreakStats habitId={habit._id} todayDate={todayDate} />
+                </View>
               </View>
-              <View style={styles.habitInfo}>
-                <Text style={styles.habitName}>{habit.name}</Text>
-                <HabitStreakStats habitId={habit._id} todayDate={todayDate} />
-              </View>
+              
+              <HabitCalendar 
+                habitId={habit._id}
+                selectedMonth={selectedMonth}
+                habitColor={habit.color}
+              />
             </View>
-            
-            <HabitCalendar 
-              habitId={habit._id}
-              selectedMonth={selectedMonth}
-              habitColor={habit.color}
-            />
-          </View>
-        ))}
+          ))
+        )}
       </ScrollView>
     </SafeAreaView>
   );
@@ -161,6 +213,34 @@ const styles = StyleSheet.create({
   monthText: {
     fontSize: 20,
     fontWeight: "bold",
+    color: "white",
+  },
+  viewToggle: {
+    flexDirection: "row",
+    backgroundColor: "rgba(255, 255, 255, 0.15)",
+    borderRadius: 12,
+    padding: 4,
+    marginTop: 16,
+  },
+  toggleButton: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+  },
+  activeToggleButton: {
+    backgroundColor: "rgba(255, 255, 255, 0.2)",
+  },
+  toggleText: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: "rgba(255, 255, 255, 0.7)",
+    marginLeft: 6,
+  },
+  activeToggleText: {
     color: "white",
   },
   content: {

@@ -9,7 +9,7 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
 const { width } = Dimensions.get("window");
-const daySize = (width - 80) / 7; // Account for padding and margins
+const daySize = (width - 60) / 7; // Better spacing calculation
 
 interface HabitCalendarProps {
   habitId: string;
@@ -148,8 +148,8 @@ const styles = StyleSheet.create({
     height: daySize,
   },
   dayContent: {
-    width: daySize - 4,
-    height: daySize - 4,
+    width: daySize - 6,
+    height: daySize - 6,
     borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
