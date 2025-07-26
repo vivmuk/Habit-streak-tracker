@@ -11,7 +11,7 @@ import { api } from "@/convex/_generated/api";
 
 const { width } = Dimensions.get("window");
 const calendarWidth = width - 40; // Account for padding
-const daySize = (calendarWidth - 14) / 7; // 7 days, account for gaps
+const daySize = Math.floor((calendarWidth - 14) / 7); // More precise calculation
 
 interface CombinedHabitCalendarProps {
   selectedMonth: Date;
@@ -169,15 +169,15 @@ const styles = StyleSheet.create({
   calendarGrid: {
     flexDirection: "row",
     flexWrap: "wrap",
+    justifyContent: "flex-start",
   },
   dayCell: {
-    padding: 2,
     alignItems: "center",
     justifyContent: "center",
   },
   dayContent: {
-    width: daySize - 4,
-    height: daySize - 4,
+    width: daySize - 2,
+    height: daySize - 2,
     borderRadius: 8,
     justifyContent: "space-between",
     alignItems: "center",

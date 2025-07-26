@@ -9,7 +9,7 @@ import { useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
 
 const { width } = Dimensions.get("window");
-const daySize = (width - 60) / 7; // Better spacing calculation
+const daySize = Math.floor((width - 80) / 7); // More precise calculation
 
 interface HabitCalendarProps {
   habitId: string;
@@ -139,17 +139,17 @@ const styles = StyleSheet.create({
   calendarGrid: {
     flexDirection: "row",
     flexWrap: "wrap",
+    justifyContent: "flex-start",
   },
   dayCell: {
-    padding: 2,
     alignItems: "center",
     justifyContent: "center",
     width: daySize,
     height: daySize,
   },
   dayContent: {
-    width: daySize - 6,
-    height: daySize - 6,
+    width: daySize - 4,
+    height: daySize - 4,
     borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
